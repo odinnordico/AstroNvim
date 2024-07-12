@@ -5,17 +5,18 @@
 -- fit in the normal config locations above can go here
 
 -- Set up custom filetypes
--- vim.filetype.add {
---   extension = {
---     foo = "fooscript",
---   },
---   filename = {
---     ["Foofile"] = "fooscript",
---   },
---   pattern = {
---     ["~/%.config/foo/.*"] = "fooscript",
---   },
--- }
+local filetypes = {
+  extension = {
+    gohtml = "html",
+  },
+  filename = {},
+  pattern = {},
+}
+vim.filetype.add(filetypes)
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.snippets",
+  command = "setfiletype snippets",
+})
 
 -- Set neotree to open on start
 vim.api.nvim_create_augroup("neotree", {})
